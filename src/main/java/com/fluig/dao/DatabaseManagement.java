@@ -84,6 +84,7 @@ public class DatabaseManagement {
     private void tryExecuteBatch(String SQL, List<Long> entities, int offset){
 
         try{
+            float complete;
             this.statement = this.con.prepareStatement(SQL);
 
             System.out.println("#Executando UPDATE: " + SQL);
@@ -100,7 +101,11 @@ public class DatabaseManagement {
                     }
                     this.statement.executeBatch();
                     this.statement.clearBatch();
+                    complete = (float) (((i+offset > limit ? limit : i+offset)*100)/limit);
+                    log.info("#processando exclusao dos alerts. Status: " + complete + "%");
                 }
+
+
             }
         } catch (SQLException e) {
             log.error("Erro ao realizar update: " + e.getMessage());
