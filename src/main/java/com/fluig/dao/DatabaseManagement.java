@@ -61,7 +61,7 @@ public class DatabaseManagement {
             log.info("#size alert: " + alertIds.size() + " size objects: " + alertObjectIds.size());
 
             if (!alertIds.isEmpty()) {
-                final int OFFSET = 1000;
+                final int OFFSET = 2000;
 
                 this.tryExecuteBatch(Query.REMOVE_FDN_ALERTSENDER,alertIds,OFFSET);
                 this.tryExecuteBatch(Query.REMOVE_FDN_AlertAction,alertIds,OFFSET);
@@ -81,7 +81,7 @@ public class DatabaseManagement {
 
 
 
-    private synchronized void tryExecuteBatch(String SQL, List<Long> entities, int offset){
+    private void tryExecuteBatch(String SQL, List<Long> entities, int offset){
 
         try{
             this.statement = this.con.prepareStatement(SQL);
