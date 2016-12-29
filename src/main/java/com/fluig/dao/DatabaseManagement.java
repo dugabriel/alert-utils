@@ -32,10 +32,10 @@ public class DatabaseManagement {
     public void cleanAlerts(int limitDays){
 
         try {
-            log.info("get list of allerts");
+            log.info("#get list of allerts...");
 
             List<Long> alertIds = new ArrayList<>();
-            List<Long> alertObjectIds = new ArrayList<Long>();
+            List<Long> alertObjectIds = new ArrayList<>();
 
             this.statement = this.con.prepareStatement(Query.FIND_ALERTS_ID);
             this.statement.setInt(1,limitDays);
@@ -61,22 +61,13 @@ public class DatabaseManagement {
             log.info("#size alert: " + alertIds.size() + " size objects: " + alertObjectIds.size());
 
             if (!alertIds.isEmpty()) {
+                final int OFFSET = 1000;
 
-                log.info("#delete FDN_ALERTSENDER");
-                this.tryExecuteBatch(Query.REMOVE_FDN_ALERTSENDER,alertIds,1000);
-
-                log.info("#delete FDN_AlertAction");
-                this.tryExecuteBatch(Query.REMOVE_FDN_AlertAction,alertIds,1000);
-
-                log.info("#delete FDN_AlertMetadata");
-                this.tryExecuteBatch(Query.REMOVE_FDN_AlertMetadata,alertIds,1000);
-
-                log.info("#delete FDN_Alert");
-                this.tryExecuteBatch(Query.REMOVE_FDN_Alert,alertIds,1000);
-
-                log.info("#delete FDN_AlertObject");
-                this.tryExecuteBatch(Query.REMOVE_FDN_AlertObject,alertObjectIds,1000);
-
+                this.tryExecuteBatch(Query.REMOVE_FDN_ALERTSENDER,alertIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_AlertAction,alertIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_AlertMetadata,alertIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_Alert,alertIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_AlertObject,alertObjectIds,OFFSET);
             }
 
         } catch (SQLException e){
@@ -95,7 +86,7 @@ public class DatabaseManagement {
         try{
             this.statement = this.con.prepareStatement(SQL);
 
-            System.out.println("Executando UPDATE: " + SQL);
+            System.out.println("#Executando UPDATE: " + SQL);
 
             if(this.statement != null){
                 final int limit = entities.size();
@@ -120,6 +111,7 @@ public class DatabaseManagement {
     private void closeConnection(ResultSet rs, PreparedStatement stmt, Connection con){
 
         try {
+
             if (rs != null) {
                 rs.close();
             }
@@ -131,6 +123,7 @@ public class DatabaseManagement {
             if (con != null) {
                 con.close();
             }
+
         } catch (SQLException e) {
             log.error("Erro ao fechar conexões: " + e.getMessage());
             e.printStackTrace();

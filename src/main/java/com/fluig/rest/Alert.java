@@ -35,13 +35,4 @@ public class Alert {
             }
         }
 
-
-        @GET
-        @Path("/{param}")
-        public Response printMessage(@PathParam("param") String msg){
-
-            String result = "Rest exemple: " + msg;
-
-            return Response.status(200).entity(result).build();
-        }
 }
