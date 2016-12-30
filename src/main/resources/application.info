@@ -11,5 +11,3 @@ application.uiwidget=true
 application.mobileapp=false
 view.file=view.ftl
 edit.file=edit.ftl
-application.resource.js.1=/resources/js/alert-utils.js
-application.resource.css.1=/resources/css/alert-utils.css
