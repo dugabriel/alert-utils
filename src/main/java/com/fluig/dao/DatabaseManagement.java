@@ -61,13 +61,12 @@ public class DatabaseManagement {
             log.info("#size alert: " + alertIds.size() + " size objects: " + alertObjectIds.size());
 
             if (!alertIds.isEmpty()) {
-                final int OFFSET = 2000;
-
+                final int OFFSET = 1000;
                 this.tryExecuteBatch(Query.REMOVE_FDN_ALERTSENDER,alertIds,OFFSET);
-                this.tryExecuteBatch(Query.REMOVE_FDN_AlertAction,alertIds,OFFSET);
-                this.tryExecuteBatch(Query.REMOVE_FDN_AlertMetadata,alertIds,OFFSET);
-                this.tryExecuteBatch(Query.REMOVE_FDN_Alert,alertIds,OFFSET);
-                this.tryExecuteBatch(Query.REMOVE_FDN_AlertObject,alertObjectIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_ALERTACTION,alertIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_ALERTMETADATA,alertIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_ALERT,alertIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_ALERTOBJECT,alertObjectIds,OFFSET);
             }
 
         } catch (SQLException e){
@@ -87,7 +86,7 @@ public class DatabaseManagement {
             float complete;
             this.statement = this.con.prepareStatement(SQL);
 
-            System.out.println("#Executando UPDATE: " + SQL);
+            System.out.println("#executando UPDATE: " + SQL);
 
             if(this.statement != null){
                 final int limit = entities.size();
@@ -108,29 +107,24 @@ public class DatabaseManagement {
 
             }
         } catch (SQLException e) {
-            log.error("Erro ao realizar update: " + e.getMessage());
+            log.error("update error: " + e.getMessage());
         }
     }
 
 
     private void closeConnection(ResultSet rs, PreparedStatement stmt, Connection con){
-
         try {
-
             if (rs != null) {
                 rs.close();
             }
-
             if (stmt != null) {
                 stmt.close();
             }
-
             if (con != null) {
                 con.close();
             }
-
         } catch (SQLException e) {
-            log.error("Erro ao fechar conexões: " + e.getMessage());
+            log.error("error on close connections: " + e.getMessage());
             e.printStackTrace();
         }
     }

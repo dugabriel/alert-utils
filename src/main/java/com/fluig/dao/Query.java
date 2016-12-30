@@ -9,12 +9,12 @@ public class Query {
 
     public static final String REMOVE_FDN_ALERTSENDER = "DELETE FROM FDN_ALERTSENDER WHERE ALERT_ID = ?";
 
-    public static final String REMOVE_FDN_AlertAction = "DELETE FROM FDN_AlertAction WHERE ALERT_ID = ?";
+    public static final String REMOVE_FDN_ALERTACTION = "DELETE FROM FDN_AlertAction WHERE ALERT_ID = ?";
 
-    public static final String REMOVE_FDN_AlertMetadata = "DELETE FROM FDN_AlertMetadata WHERE ALERT_ID = ?";
+    public static final String REMOVE_FDN_ALERTMETADATA = "DELETE FROM FDN_AlertMetadata WHERE ALERT_ID = ?";
 
-    public static final String REMOVE_FDN_Alert = "DELETE FROM FDN_Alert WHERE ID = ?";
+    public static final String REMOVE_FDN_ALERT = "DELETE FROM FDN_Alert WHERE ID = ?";
 
-    public static final String REMOVE_FDN_AlertObject = "DELETE FROM FDN_AlertObject WHERE ID = ?";
+    public static final String REMOVE_FDN_ALERTOBJECT = "DELETE FROM FDN_AlertObject WHERE ID = ?";
 
 }

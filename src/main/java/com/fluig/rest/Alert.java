@@ -27,8 +27,7 @@ public class Alert {
             log.info("remove alerts before " + days);
 
             try {
-                DatabaseManagement dm = new DatabaseManagement();
-                dm.cleanAlerts(days);
+                new DatabaseManagement().cleanAlerts(days);
                 return Response.status(200).build();
             } catch (Exception e) {
                 return Response.status(500).entity(e.toString()).build();
