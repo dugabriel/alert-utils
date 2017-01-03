@@ -17,4 +17,6 @@ public class Query {
 
     public static final String REMOVE_FDN_ALERTOBJECT = "DELETE FROM FDN_AlertObject WHERE ID = ?";
 
+    public static final String OPTIMIZE_TABLE = "optimize table ?";
+
 }

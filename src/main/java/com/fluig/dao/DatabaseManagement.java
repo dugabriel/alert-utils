@@ -64,8 +64,8 @@ public class DatabaseManagement {
                 final int OFFSET = 1000;
                 this.tryExecuteBatch(Query.REMOVE_FDN_ALERTSENDER,alertIds,OFFSET);
                 this.tryExecuteBatch(Query.REMOVE_FDN_ALERTACTION,alertIds,OFFSET);
-                this.tryExecuteBatch(Query.REMOVE_FDN_ALERTMETADATA,alertIds,OFFSET);
-                this.tryExecuteBatch(Query.REMOVE_FDN_ALERT,alertIds,OFFSET);
+                this.tryExecuteBatch(Query.REMOVE_FDN_ALERTMETADATA,alertIds,100);
+                this.tryExecuteBatch(Query.REMOVE_FDN_ALERT,alertIds,100);
                 this.tryExecuteBatch(Query.REMOVE_FDN_ALERTOBJECT,alertObjectIds,OFFSET);
             }
 
@@ -76,6 +76,14 @@ public class DatabaseManagement {
             log.info("#close connections...");
             this.closeConnection(this.rs, this.statement, this.con);
         }
+    }
+
+    /**
+     * TODO: Executar o SQL que otimiza as tabelas liberando o espaço em disco, ex: optimize table teste
+     */
+    public void optimizeTable(){
+
+
     }
 
 
