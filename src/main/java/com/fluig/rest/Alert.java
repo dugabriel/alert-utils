@@ -34,4 +34,19 @@ public class Alert {
             }
         }
 
+        @POST
+        @Path("/optimize")
+        @Produces(MediaType.APPLICATION_JSON)
+        public Response optimizeTables(){
+
+            log.info("opmize tables alerts");
+
+            try {
+                new DatabaseManagement().optimizeTable();
+                return Response.status(200).build();
+            } catch (Exception e) {
+                return Response.status(500).entity(e.toString()).build();
+            }
+        }
+
 }

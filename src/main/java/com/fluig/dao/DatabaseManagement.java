@@ -78,11 +78,30 @@ public class DatabaseManagement {
         }
     }
 
-    /**
-     * TODO: Executar o SQL que otimiza as tabelas liberando o espaço em disco, ex: optimize table teste
-     */
+
+
     public void optimizeTable(){
 
+        try {
+            log.info("#Executando as otimizacoes das tabelas: " + Query.TABLES.toString());
+
+
+            for (String table : Query.TABLES){
+
+                String query = Query.OPTIMIZE_TABLE + table;
+
+                log.info("#"+query);
+
+                this.statement = this.con.prepareStatement(query);
+                this.statement.execute();
+            }
+
+        } catch (SQLException e) {
+            log.error("optimize error: " + e.getMessage());
+        }finally {
+            log.info("#close connections...");
+            this.closeConnection(this.rs, this.statement, this.con);
+        }
 
     }
 
@@ -94,7 +113,7 @@ public class DatabaseManagement {
             float complete;
             this.statement = this.con.prepareStatement(SQL);
 
-            System.out.println("#executando UPDATE: " + SQL);
+            log.info("#executando UPDATE: " + SQL);
 
             if(this.statement != null){
                 final int limit = entities.size();
