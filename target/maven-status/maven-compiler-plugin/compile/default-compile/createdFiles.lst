@@ -1,0 +1,4 @@
+com\fluig\rest\Alert.class
+com\fluig\jdbc\ConnectionFactory.class
+com\fluig\dao\Query.class
+com\fluig\dao\DatabaseManagement.class
