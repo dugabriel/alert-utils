@@ -37,7 +37,21 @@ public class DatabaseManagement {
             List<Long> alertIds = new ArrayList<>();
             List<Long> alertObjectIds = new ArrayList<>();
 
-            this.statement = this.con.prepareStatement(Query.FIND_ALERTS_ID);
+            String database =  this.con.getMetaData().getClientInfoProperties().toString();
+
+            if (database.contains("SQLServer")) {
+                this.statement = this.con.prepareStatement(Query.FIND_ALERTS_ID_SQLSERVER);
+            } else if (database.contains("MySQL")) {
+                this.statement = this.con.prepareStatement(Query.FIND_ALERTS_ID_MYSQL);
+            } else if (database.contains("Oracle")) {
+                this.statement = this.con.prepareStatement(Query.FIND_ALERTS_ID_ORACLE);
+            }
+
+            if (this.statement == null ) {
+                log.error("statement error");
+                return;
+            }
+
             this.statement.setInt(1,limitDays);
 
             if (this.statement != null) {

@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.fluig</groupId>
         <artifactId>wcm-widget</artifactId>
-        <version>1.6.2-SNAPSHOT</version>
+        <version>1.6.1-SNAPSHOT</version>
     </parent>
     <artifactId>alert-utils</artifactId>
     <packaging>war</packaging>
@@ -57,116 +57,18 @@
     </dependencies>
 
     <build>
+        <finalName>alert-utils</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-    <!-- Utiliza os Arquivos .js e .css Originais e Inclui os Minificados com
-		o sufixo .min -->
-    <profiles>
-        <profile>
-            <id>debug</id>
-            <activation>
-                <property>
-                    <name>!onlyminify</name>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <configuration>
-                            <failOnMissingWebXml>false</failOnMissingWebXml>
-                            <archive>
-                                <manifestEntries>
-                                    <Dependencies>org.slf4j, org.quartz</Dependencies>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.alchim31.maven</groupId>
-                        <artifactId>yuicompressor-maven-plugin</artifactId>
-                        <version>1.1</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>compress</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <nosuffix>false</nosuffix>
-                            <force>true</force>
-                            <linebreakpos>-1</linebreakpos>
-                            <disableOptimizations>false</disableOptimizations>
-                            <gzip>false</gzip>
-                            <jswarn>false</jswarn>
-                            <nomunge>true</nomunge>
-                            <preserveAllSemiColons>false</preserveAllSemiColons>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- Utiliza os Arquivos .js e .css Minificados -->
-        <profile>
-            <id>onlyminify</id>
-            <activation>
-                <property>
-                    <name>onlyminify</name>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <configuration>
-                            <warSourceExcludes>**/*.js,**/*.css</warSourceExcludes>
-                            <failOnMissingWebXml>false</failOnMissingWebXml>
-                            <archive>
-                                <manifestEntries>
-                                    <Dependencies>org.slf4j, org.quartz</Dependencies>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.alchim31.maven</groupId>
-                        <artifactId>yuicompressor-maven-plugin</artifactId>
-                        <version>1.1</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>compress</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <nosuffix>true</nosuffix>
-                            <force>true</force>
-                            <linebreakpos>-1</linebreakpos>
-                            <disableOptimizations>false</disableOptimizations>
-                            <gzip>false</gzip>
-                            <jswarn>false</jswarn>
-                            <nomunge>true</nomunge>
-                            <preserveAllSemiColons>false</preserveAllSemiColons>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>

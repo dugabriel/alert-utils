@@ -5,7 +5,11 @@ package com.fluig.dao;
  */
 public class Query {
 
-    public static final String FIND_ALERTS_ID = "select aa.ID, aa.Object_ID, aa.Place_ID from FDN_ALERT aa where aa.CREATION_DATE < (now() - interval ? day)";
+    public static final String FIND_ALERTS_ID_MYSQL = "select aa.ID, aa.Object_ID, aa.Place_ID from FDN_ALERT aa where aa.CREATION_DATE < (now() - interval ? day)";
+
+    public static final String FIND_ALERTS_ID_SQLSERVER = "select aa.ID, aa.Object_ID, aa.Place_ID from FDN_ALERT aa where aa.CREATION_DATE < (GETDATE() - ?)";
+
+    public static final String FIND_ALERTS_ID_ORACLE = "select aa.ID, aa.Object_ID, aa.Place_ID from FDN_ALERT aa where aa.CREATION_DATE < (now() - interval ? day)";
 
     public static final String REMOVE_FDN_ALERTSENDER = "DELETE FROM FDN_ALERTSENDER WHERE ALERT_ID = ?";
 
