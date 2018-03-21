@@ -1,8 +1,5 @@
 package com.fluig.dao;
 
-/**
- * Created by eduardo.gabriel on 28/12/2016.
- */
 public class Query {
 
     public static final String FIND_ALERTS_ID_MYSQL = "select aa.ID, aa.Object_ID, aa.Place_ID from FDN_ALERT aa where aa.CREATION_DATE < (now() - interval ? day)";

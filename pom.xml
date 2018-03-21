@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.fluig</groupId>
         <artifactId>wcm-widget</artifactId>
-        <version>1.6.1-SNAPSHOT</version>
+        <version>1.6.3-SNAPSHOT</version>
     </parent>
     <artifactId>alert-utils</artifactId>
     <packaging>war</packaging>

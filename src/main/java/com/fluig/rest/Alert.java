@@ -9,11 +9,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-/**
- * Created by eduardo.gabriel on 28/12/2016.
- */
-
-
 @Path("/alert")
 public class Alert {
 

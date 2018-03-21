@@ -5,4 +5,4 @@ Serviço para deletar notificações antigas do fluig em versões que o JOB não
 
 post: <fluig server>/alert-utils/rest/alert/clean
 
-data: int days
+`data: int days`

@@ -8,9 +8,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-/**
- * Created by eduardo.gabriel on 28/12/2016.
- */
 public class ConnectionFactory {
 
     private Connection con;

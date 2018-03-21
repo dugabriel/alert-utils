@@ -8,10 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Created by eduardo.gabriel on 28/12/2016.
- */
 public class DatabaseManagement {
 
     private Logger log = LoggerFactory.getLogger(DatabaseManagement.class);
